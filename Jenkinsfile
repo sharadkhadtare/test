@@ -5,6 +5,13 @@ pipeline {
     SVC_ACCOUNT_KEY = credentials('tfauth')
   }
 
+  stage('Checkout') {
+      steps {
+        sh 'mkdir -p creds'
+        sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./creds/serviceaccount.json'
+    }
+  }
+
   stages {
     stage ('Terraform init') {
       steps {

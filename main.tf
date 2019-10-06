@@ -2,6 +2,7 @@
 provider "google" {
  project     = "spikey-prem"
  region      = "us-west1"
+ credentials = "./creds/serviceaccount.json"
 }
 
 // Terraform plugin for creating random ids
