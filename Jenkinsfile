@@ -13,7 +13,7 @@ pipeline {
     }
     stage ('Terraform apply') {
       steps {
-        sh "terraform apply -input=false -auto-approve"
+        sh "terraform apply -input=false"
       }
     }
   }
