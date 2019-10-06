@@ -3,7 +3,7 @@ pipeline {
     ansiColor('xterm')
   }
   agent {
-    kubernetes {
+    lable {
       label 'test-terraform'
     }
   }
