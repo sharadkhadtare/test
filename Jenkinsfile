@@ -11,22 +11,7 @@ pipeline {
         sh "terraform plan -input=false"
       }
     }
-    stage ('Confirm apply') {
-      when {
-        expression {
-          GIT_BRANCH == 'master'
-        }
-      }
-      steps {
-        input "Apply plan?"
-      }
-    }
     stage ('Terraform apply') {
-      when {
-        expression {
-          GIT_BRANCH == 'master'
-        }
-      }
       steps {
         sh "terraform apply -input=false -auto-approve"
       }
