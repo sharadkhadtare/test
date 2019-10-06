@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-     node {
-         lable 'master'
-     }
-  }
+  agent any
   stages {
     stage ('Terraform init') {
       steps {
