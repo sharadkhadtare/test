@@ -1,5 +1,10 @@
 pipeline {
   agent any
+
+  environment {
+    SVC_ACCOUNT_KEY = credentials('tfauth')
+  }
+
   stages {
     stage ('Terraform init') {
       steps {
