@@ -1,12 +1,5 @@
 pipeline {
-  options {
-    ansiColor('xterm')
-  }
-  agent {
-    lable {
-      label 'test-terraform'
-    }
-  }
+  agent any
   stages {
     stage ('Terraform init') {
       steps {
