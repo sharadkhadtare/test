@@ -5,6 +5,15 @@ provider "google" {
  credentials = "./creds/serviceaccount.json"
 }
 
+data "terraform_remote_state" "folders" {
+  backend = "gcs"
+
+  config {
+    bucket = "sharad1971"
+    prefix = "state/folders"
+  }
+}
+
 // Terraform plugin for creating random ids
 resource "random_id" "instance_id" {
  byte_length = 8
