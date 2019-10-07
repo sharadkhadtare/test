@@ -3,7 +3,6 @@ pipeline {
 
   environment {
     SVC_ACCOUNT_KEY = credentials('tfauth')
-    GOOGLE_CLOUD_KEYFILE_JSON=/tmp/serviceaccount.json
   }
 
   stages {
@@ -30,7 +29,7 @@ pipeline {
     }
     stage('Checkout') {
       steps {
-        sh 'ls /tmp/serviceaccount.json'
+        sh 'rm /tmp/serviceaccount.json'
       }
     }
   }
