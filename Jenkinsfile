@@ -25,7 +25,7 @@ pipeline {
     }
     stage ('Terraform apply') {
       steps {
-        sh "terraform destroy -input=false -auto-approve"
+        sh "terraform apply -input=false -auto-approve"
       }
     }
     stage('Checkout') {
