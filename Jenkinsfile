@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        sh export GOOGLE_CLOUD_KEYFILE_JSON="/tmp/accounts.json"
+        sh "export GOOGLE_CLOUD_KEYFILE_JSON=/tmp/accounts.json"
       }
     }
 
