@@ -9,7 +9,7 @@ pipeline {
     stage('Checkin') {
       steps {
         sh 'echo $SVC_ACCOUNT_KEY | base64 -d > /tmp/serviceaccount.json'
-        sh "export GOOGLE_CLOUD_KEYFILE_JSON=/tmp/serviceaccount.json"
+        sh "export GOOGLE_APPLICATION_CREDENTIALS=/tmp/serviceaccount.json"
       }
     }
     stage ('Terraform init') {
