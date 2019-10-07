@@ -6,13 +6,6 @@ pipeline {
   }
 
   stages {
-    stage ('Checkout') {
-      steps {
-        sh 'mkdir -p creds'
-        sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./creds/serviceaccount.json'
-      }
-    }
-
     stage ('Terraform init') {
       steps {
         sh "terraform init"
@@ -25,7 +18,7 @@ pipeline {
     }
     stage ('Terraform apply') {
       steps {
-        sh "terraform apply -input=false -auto-approve"
+        sh "terraform destroy -input=false -auto-approve"
       }
     }
   }

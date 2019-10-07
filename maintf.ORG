@@ -2,6 +2,7 @@
 provider "google" {
  project     = "spikey-prem"
  region      = "us-west1"
+ credentials = "./creds/serviceaccount.json"
 }
 
 data "terraform_remote_state" "folders" {
@@ -10,6 +11,7 @@ data "terraform_remote_state" "folders" {
   config {
     bucket = "sharad1971"
     prefix = "state/folders"
+    credentials = "./creds/serviceaccount.json"
   }
 }
 
