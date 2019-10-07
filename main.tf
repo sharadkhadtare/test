@@ -11,6 +11,7 @@ data "terraform_remote_state" "folders" {
   config {
     bucket = "sharad1971"
     prefix = "state/folders"
+    credentials = "./creds/serviceaccount.json"
   }
 }
 
