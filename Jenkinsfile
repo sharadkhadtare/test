@@ -8,7 +8,6 @@ pipeline {
   stages {
     stage('Checkin') {
       steps {
-        sh 'mkdir -p creds'
         sh 'echo $SVC_ACCOUNT_KEY | base64 -d > /tmp/serviceaccount.json'
         sh "export GOOGLE_CLOUD_KEYFILE_JSON=/tmp/serviceaccount.json"
       }
@@ -30,7 +29,7 @@ pipeline {
     }
     stage('Checkout') {
       steps {
-        sh 'rm /tmp/serviceaccount.json'
+        sh 'ls /tmp/serviceaccount.json'
       }
     }
   }
