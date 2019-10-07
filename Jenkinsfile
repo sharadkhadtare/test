@@ -1,14 +1,10 @@
 pipeline {
   agent any
 
-  environment {
-    SVC_ACCOUNT_KEY = credentials('tfauth')
-  }
-
   stages {
     stage('Checkout') {
       steps {
-        sh export GOOGLE_CLOUD_KEYFILE_JSON=$SVC_ACCOUNT_KEY
+        sh export GOOGLE_CLOUD_KEYFILE_JSON="/tmp/accounts.json"
       }
     }
 
