@@ -18,7 +18,7 @@ resource "random_id" "instance_id" {
 
 module "cloud-sql-gdpr-us" {
 # source = "git@github.com:procter-gamble/terraform-module-pg-cloud-sql?ref=v1.2.0"
-  source = "/home/sharad/PG_GIT/terraform-module-pg-cloud-sql"
+  source = "/home/sharad/test/tsgd"
   project_id = "spikey-prem"
   mysql_name = "gdprsql"
   mysql_version = "MYSQL_5_6"
