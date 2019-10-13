@@ -19,12 +19,12 @@ pipeline {
     }
     stage ('Terraform plan') {
       steps {
-        sh "terraform plan -input=false -target=cloud-sql-gdpr-us"
+        sh "terraform plan -input=false"
       }
     }
     stage ('Terraform apply') {
       steps {
-        sh "terraform destroy -input=false -auto-approve -target=cloud-sql-gdpr-us"
+        sh "terraform destroy -input=false -auto-approve "
       }
     }
     stage('Checkout') {
