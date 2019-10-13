@@ -17,13 +17,13 @@ resource "random_id" "instance_id" {
 }
 
 module "private_service_access" {
-  source  = "/home/sharad/test786/tgsd/modules/private_service_access"
+  source  = "/home/sharad/test/tgsd/modules/private_service_access"
   project_id = "spikey-prem"
   vpc_network = "vpc-prem"
 }
 
 module "cloud-sql-gdpr-us" {
-  source  = "/home/sharad/test786/tgsd/modules/mysql"
+  source  = "/home/sharad/test/tgsd/modules/mysql"
 
   project_id = "spikey-prem"
   name = "gdprsql"
