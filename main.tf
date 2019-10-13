@@ -16,29 +16,23 @@ resource "random_id" "instance_id" {
  byte_length = 8
 }
 
-module "private_service_access" {
-  source  = "/home/sharad/test/tgsd/modules/private_service_access"
-  project_id = "spikey-prem"
-  vpc_network = "vpc-prem"
-}
-
 module "cloud-sql-gdpr-us" {
-  source  = "/home/sharad/test/tgsd/modules/mysql"
-
+# source = "git@github.com:procter-gamble/terraform-module-pg-cloud-sql?ref=v1.2.0"
+  source = "git@github.com:sharadkhadtare/test"
   project_id = "spikey-prem"
-  name = "gdprsql"
-  database_version = "MYSQL_5_6"
+  mysql_name = "gdprsql"
+  mysql_version = "MYSQL_5_6"
   region = "us-east4"
   zone = "a"
- 
+  private_network = "vpc-prem"
   additional_users = [
   {
-  name = "GDPRSegInAgr"
+  name = "GDPRSegAggregate"
   password = "4sk2u2Ab7jH"
   },
   {
-  name = "GDPRSegInGen"
-  }
+  name = "GDPRSegGenerate"
+  } 
 
   ]
 }
