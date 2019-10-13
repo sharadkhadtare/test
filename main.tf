@@ -20,26 +20,23 @@ resource "random_id" "instance_id" {
  byte_length = 8
 }
 
-// A single Google Cloud Engine instance
-resource "google_compute_instance" "default" {
- name         = "flask-vm-${random_id.instance_id.hex}"
- machine_type = "f1-micro"
- zone         = "us-west1-a"
+module "cloud-sql-gdpr-us" {
+  source = "/home/sharad/PG_GIT/terraform-module-pg-cloud-sql"
+# source = "/home/sharad/PG_GIT/terraform-module-pg-cloud-sql?ref=ds/ip-config-fix"
+  project_id = "spikey-prem"
+  mysql_name = "gdprsql-${random_id.instance_id.hex}"
+  mysql_version = "MYSQL_5_6"
+  region = "us-east4"
+  zone = "a"
+  private_network = "vpc-prem"
+  additional_users = [
+  {
+  name = "GDPRSegAggregate"
+  password = "4sk2u2Ab7jH"
+  },
+  {
+  name = "GDPRSegGenerate"
+  }
 
- boot_disk {
-   initialize_params {
-     image = "debian-cloud/debian-9"
-   }
- }
-
-// Make sure flask is installed on all new instances for later steps
- metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync; pip install flask"
-
- network_interface {
-   network = "default"
-
-   access_config {
-     // Include this section to give the VM an external ip address
-   }
- }
+  ]
 }
