@@ -1,18 +1,14 @@
 // Configure the Google Cloud provider
 provider "google" {
  project     = "spikey-prem"
- region      = "us-west1"
- credentials = "/tmp/serviceaccount.json"
+ region      = "us-east4"
+ credentials = "${file("account.json")}"
 }
 
-data "terraform_remote_state" "folders" {
-  backend = "gcs"
-
-  config {
-    bucket = "sharad1971"
-    prefix = "state/folders"
-    credentials = "/tmp/serviceaccount.json"
-  }
+provider "google-beta" {
+  project     = "spikey-prem"
+  region      = "us-east4"
+  credentials = "${file("account.json")}"
 }
 
 // Terraform plugin for creating random ids
@@ -21,10 +17,10 @@ resource "random_id" "instance_id" {
 }
 
 module "cloud-sql-gdpr-us" {
+# source = "git@github.com:procter-gamble/terraform-module-pg-cloud-sql?ref=v1.2.0"
   source = "/home/sharad/PG_GIT/terraform-module-pg-cloud-sql"
-# source = "/home/sharad/PG_GIT/terraform-module-pg-cloud-sql?ref=ds/ip-config-fix"
   project_id = "spikey-prem"
-  mysql_name = "gdprsql-${random_id.instance_id.hex}"
+  mysql_name = "gdprsql"
   mysql_version = "MYSQL_5_6"
   region = "us-east4"
   zone = "a"
@@ -36,7 +32,7 @@ module "cloud-sql-gdpr-us" {
   },
   {
   name = "GDPRSegGenerate"
-  }
+  } 
 
   ]
 }
