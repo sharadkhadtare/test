@@ -24,7 +24,6 @@ env:
     PROJECT_ID: ${{ secrets.RUN_PROJECT }}
     RUN_REGION: us-central1
     SERVICE_NAME: super-simple-service
-    GITHUB_SHA: b573316e1af067829501a576aebf32be2404c82b
 
 jobs:
     setup-build-deploy:
